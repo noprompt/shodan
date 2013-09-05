@@ -28,7 +28,7 @@ Console wrappers are in the `shodan.console` namespace.
 ;;;; `console.debug()`
 
 ;; NOTE: This is not available for NodeJS.
-(console/debug "I have no choice but to destroy this starship." 
+(console/debug "I have no choice but to destroy this starship.")
 
 ;;;; `console.info()`
 
@@ -54,7 +54,7 @@ Console wrappers are in the `shodan.console` namespace.
 
 ;;;; Collapsed message grouping
 (console/group-collapsed "SHODAN")
-(console/log "Only one egg remains, insect."
+(console/log "Only one egg remains, insect.")
 (consol/group-end)
 
 ;;;; `console.assert()`
