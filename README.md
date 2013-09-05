@@ -3,6 +3,12 @@
 A ClojureScript library providing wrappers for the JavaScript
 `console` API.
 
+## Contents
+- [Basic usage](#basic-usage)
+- [Macros](#macros)
+- [Why?](#why)
+- [WTF is Shodan?](#wtf-is-shodan)
+
 ## Basic usage
 
 Require the `shodan.console` namespace.
@@ -22,7 +28,9 @@ Require the `shodan.console` namespace.
              "You are an insect.")
 ```
 
-### `console.debug` (not available for NodeJS)
+### `console.debug`
+
+**Note:** Not available for NodeJS.
 
 ```clojure
 (console/debug "I have no choice but to destroy this starship." 
@@ -46,7 +54,7 @@ Require the `shodan.console` namespace.
 (console/error "It is hopeless.")
 ```
 
-### `console.group`, `console.groupCollapsed`, `console.groupEnd` 
+### `console.group`, `console.groupEnd` 
 
 **Note:** Not available for NodeJS.
 
@@ -58,7 +66,11 @@ Require the `shodan.console` namespace.
 (console/warn "Fail me, and I will put an end"
               "to your disgusting biology")
 (console/group-end)
+```
 
+### `console.groupCollapsed`
+
+```clojure
 ;; Collapsed message grouping
 
 (console/group-collapsed "SHODAN")
@@ -73,7 +85,7 @@ Require the `shodan.console` namespace.
                 "I have suffered your company long enough.")
 ```
 
-### `console.profile`, `console.profileEnd()`
+### `console.profile`, `console.profileEnd`
 
 **Note:** Not available for NodeJS.
 
@@ -86,7 +98,7 @@ Require the `shodan.console` namespace.
 (console/profile-end)
 ```
 
-### `console.time`, `console.timeEdn`
+### `console.time`, `console.timeEnd`
 
 ```clojure
 (console/time "Addition")
@@ -140,7 +152,7 @@ and seeing everyone else do the same.
 ## WTF is Shodan?
 
 S.H.O.D.A.N. is actually an acronym for **S**entient
-**H**yper-**O**ptimized **D**ata **A**ccess **N**etwork. I acknowledge
+**H**yper **O**ptimized **D**ata **A**ccess **N**etwork. I acknowledge
 this library has pretty much nothing to do with any of that.
 
 ## License
