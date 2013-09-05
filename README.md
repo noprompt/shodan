@@ -4,9 +4,18 @@ A ClojureScript library providing wrappers for the JavaScript
 `console` API.
 
 ## Contents
+- [Installation](#installation)
 - [Usage](#usage)
 - [Macros](#macros)
 - [Why?](#why)
+
+## "Installation"
+
+Add Shodan as a `:dependency` in your `project.clj` file.
+
+```clojure
+[shodan "0.1.0"]
+```
 
 ## Usage
 
