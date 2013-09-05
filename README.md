@@ -4,103 +4,76 @@ A ClojureScript library providing wrappers for the JavaScript
 `console` API.
 
 ## Contents
-- [Basic usage](#basic-usage)
+- [Usage](#usage)
 - [Macros](#macros)
 - [Why?](#why)
-- [WTF is Shodan?](#wtf-is-shodan)
 
-## Basic usage
+## Usage
 
-Require the `shodan.console` namespace.
+Console wrappers are in the `shodan.console` namespace.
 
 ```clojure
 (ns omfg
   (:require [shodan.console :as console])
-```
 
-### `console.log`
+;;;; `console.log()`
 
-```clojure
 (console/log "You have accomplished much for a thing of such small consequence.")
+
 ;; Pass a variable number of arguments.
 (console/log "You move like an insect."
              "You think like an insect."
              "You are an insect.")
-```
 
-### `console.debug`
+;;;; `console.debug()`
 
-**Note:** Not available for NodeJS.
-
-```clojure
+;; NOTE: This is not available for NodeJS.
 (console/debug "I have no choice but to destroy this starship." 
-```
 
-### `console.info`
+;;;; `console.info()`
 
-```clojure
 (console/info "Matters on Deck 5 also require your attention.")
-```
 
-### `console.warn`
+;;;; `console.warn()`
 
-```clojure
 (console/warn "I will not abide disobedience.")
-```
 
-### `console.error`
+;;;; `console.error()`
 
-```clojure
 (console/error "It is hopeless.")
-```
 
-### `console.group`, `console.groupEnd` 
+;;;; `console.group()`, `console.groupCollapsed()`, `console.groupEnd()` 
 
-**Note:** Not available for NodeJS.
-
-```clojure
+;; NOTE: These are not not available for NodeJS.
 (console/group "SHODAN")
 (console/log "Launch in to the many."
              "Cut out it's heart."
              "And I will reward you with continued existence.")
-(console/warn "Fail me, and I will put an end"
-              "to your disgusting biology")
+(console/warn "Fail me, and I will put an end to your disgusting biology.")
 (console/group-end)
-```
 
-### `console.groupCollapsed`
-
-```clojure
-;; Collapsed message grouping
-
+;;;; Collapsed message grouping
 (console/group-collapsed "SHODAN")
 (console/log "Only one egg remains, insect."
 (consol/group-end)
-```
 
-### `console.assert`
+;;;; `console.assert()`
 
-```clojure
 (console/assert (= 1 (+ 1 2))
                 "I have suffered your company long enough.")
-```
 
-### `console.profile`, `console.profileEnd`
+;;;; `console.profile()`, `console.profileEnd()`
 
-**Note:** Not available for NodeJS.
-
-```clojure
+;; NOTE: These are not not available for NodeJS.
 (console/profile "Accessing the primary data loop")
 (loop [xs ["x" "y" "z"] ys (array)]
   (if-let [x (first xs)]
     (recur (next xs) (.push ys x))
     ys))
 (console/profile-end)
-```
 
-### `console.time`, `console.timeEnd`
+;;;; `console.time()`, `console.timeEnd()`
 
-```clojure
 (console/time "Addition")
 (+ 1 1)
 (console/time-end)
