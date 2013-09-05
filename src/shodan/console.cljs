@@ -1,4 +1,5 @@
 (ns shodan.console
+  (:refer-clojure :exclude [assert])
   (:require [shodan.util :refer [node-js? js-apply]]))
 
 ;;;; Logging
