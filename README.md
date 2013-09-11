@@ -53,7 +53,7 @@ Console wrappers are in the `shodan.console` namespace.
 
 ;;;; `console.group()`, `console.groupCollapsed()`, `console.groupEnd()` 
 
-;; NOTE: These are not not available for NodeJS.
+;; NOTE: These are not available for NodeJS.
 (console/group "SHODAN")
 (console/log "Launch in to the many."
              "Cut out it's heart."
@@ -73,7 +73,7 @@ Console wrappers are in the `shodan.console` namespace.
 
 ;;;; `console.profile()`, `console.profileEnd()`
 
-;; NOTE: These are not not available for NodeJS.
+;; NOTE: These are not available for NodeJS.
 (console/profile "Accessing the primary data loop")
 (loop [xs ["x" "y" "z"] ys (array)]
   (if-let [x (first xs)]
