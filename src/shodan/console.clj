@@ -1,6 +1,6 @@
-(ns shodan.console.macros
+(ns shodan.console
   (:refer-clojure :exclude [time]))
- 
+
 (defmacro with-group [title & body]
   `(do
      (.group js/console ~title)

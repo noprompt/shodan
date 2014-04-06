@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [assert])
   (:require [shodan.util :refer [node-js? js-apply]]))
 
-;;;; Logging
+;;----------------------------------------------------------------------
+;; Logging
 
 (defn log
   "Display messages to the console."
@@ -30,24 +31,33 @@
   [& args]
   (js-apply (.-error js/console) js/console args))
 
-;;;; Message grouping
+;;----------------------------------------------------------------------
+;; Message grouping (browser only)
 
 (when-not node-js?
- (defn group [& args]
-   (js-apply (.-group js/console) js/console args))
+  (defn group
+    "Begin a console message group."
+    [& args]
+    (js-apply (.-group js/console) js/console args))
 
- (defn group-collapsed [& args]
-   (js-apply (.-groupCollapsed js/console) js/console args))
+  (defn group-collapsed
+    "Begin a console message group in a collapsed state."
+    [& args]
+    (js-apply (.-groupCollapsed js/console) js/console args))
 
- (defn group-end []
-   (.-groupEnd js/console)))
+  (defn group-end
+    "End a console message group."
+    []
+    (.-groupEnd js/console)))
 
-;;;; Assertion
+;;----------------------------------------------------------------------
+;; Assertion
 
 (defn assert [& args]
   (js-apply (.-assert js/console) js/console args))
 
-;;;; Inspection
+;;----------------------------------------------------------------------
+;; Inspection
 
 (defn dir [obj]
   (.dir js/console obj))
@@ -59,18 +69,24 @@
 (defn trace []
   (.trace js/console))
 
-;;;; Profiling
+;;----------------------------------------------------------------------
+;; Profiling (browser only)
 
 (when-not node-js?
-  (defn profile [title]
+  (defn profile
+    "Begin a profile named title."
+    [title]
     (.profile js/console title))
 
-  (defn profile-end []
+  (defn profile-end
+    "End a profile."
+    []
     (.profileEnd js/console)))
 
-;;;; Timing
+;;----------------------------------------------------------------------
+;; Timing
 
-(defn time [id]
+(defn time-start [id]
   (.time js/console id))
 
 (defn time-end [id]
