@@ -14,46 +14,40 @@ A ClojureScript library providing wrappers for the JavaScript
 Add Shodan as a `:dependency` in your `project.clj` file.
 
 ```clojure
-[shodan "0.1.0"]
+[shodan "0.2.0"]
 ```
 
 ## Usage
 
 Console wrappers are in the `shodan.console` namespace.
 
-```clojure
+```clj
 (ns omfg
-  (:require [shodan.console :as console])
+  (:require [shodan.console :as console :include-macros true])
+```
 
-;;;; `console.log()`
+### Logging
 
-(console/log "You have accomplished much for a thing of such small consequence.")
+Wrappers for `console.log`, `console.debug` (not available for
+NodeJS), `console.info`, `console.warn`, `console.error`.
 
-;; Pass a variable number of arguments.
+```clj
 (console/log "You move like an insect."
              "You think like an insect."
              "You are an insect.")
 
-;;;; `console.debug()`
-
-;; NOTE: This is not available for NodeJS.
 (console/debug "I have no choice but to destroy this starship.")
-
-;;;; `console.info()`
-
 (console/info "Matters on Deck 5 also require your attention.")
-
-;;;; `console.warn()`
-
 (console/warn "I will not abide disobedience.")
-
-;;;; `console.error()`
-
 (console/error "It is hopeless.")
+```
 
-;;;; `console.group()`, `console.groupCollapsed()`, `console.groupEnd()` 
+### Message grouping (not available for NodeJS)
 
-;; NOTE: These are not available for NodeJS.
+Wrappers for `console.group()`, `console.groupCollapsed()`,
+`console.groupEnd()`.
+
+```clj
 (console/group "SHODAN")
 (console/log "Launch in to the many."
              "Cut out it's heart."
@@ -61,46 +55,44 @@ Console wrappers are in the `shodan.console` namespace.
 (console/warn "Fail me, and I will put an end to your disgusting biology.")
 (console/group-end)
 
-;;;; Collapsed message grouping
 (console/group-collapsed "SHODAN")
 (console/log "Only one egg remains, insect.")
 (consol/group-end)
+```
 
-;;;; `console.assert()`
+### Profiling (not available for NodeJS)
 
-(console/assert (= 1 (+ 1 2))
-                "I have suffered your company long enough.")
+Wrappers for `console.profile(title)` and `console.profileEnd()`.
 
-;;;; `console.profile()`, `console.profileEnd()`
+```clj
+;; js/console.profile
+(console/profile-start "Accessing the primary data loop")
 
-;; NOTE: These are not available for NodeJS.
-(console/profile "Accessing the primary data loop")
 (loop [xs ["x" "y" "z"] ys (array)]
   (if-let [x (first xs)]
     (recur (next xs) (.push ys x))
     ys))
+
+;; js/console.profileEnd
 (console/profile-end)
+```
 
-;;;; `console.time()`, `console.timeEnd()`
+### Timing
 
-(console/time "Addition")
+Wrappers for `console.time()` and `console.timeEnd()`.
+
+```clj
+(console/time-start "Addition")
 (+ 1 1)
 (console/time-end)
 ```
 
 ## Macros
 
-Shodan comes with a some simple macros for grouping, profiling, and
-timing.
+Shodan comes with a some simple macros for message grouping,
+profiling, and timing.
 
-```clojure
-(ns lol.core
-  (:refer-clojure :exclude [time])
-  (:require [shodan.console :as console])
-  (:use-macros [shodan.console.macros))
-```
-
-### Grouping
+### Grouping (not available for NodeJS)
 
 ```clojure
 (with-group "America Online"
@@ -112,7 +104,7 @@ timing.
     (console/info "U HERV MAHL.")))
 ```
 
-### Profiling
+### Profiling (not available for NodeJS)
 
 ```clojure
 (with-profile "Perf Madness"
@@ -129,7 +121,9 @@ timing.
 ## Why?
 
 Because I'm tired of copy/pasting/rewriting the same code all the time
-and seeing everyone else do the same.
+and seeing everyone else do the same. Also, having a basic wrapper for
+the `console` API makes it easier to create custom logging functions
+and macros.
 
 ## WTF is Shodan?
 
