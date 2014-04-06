@@ -7,7 +7,7 @@
      ~@body
      (.groupEnd js/console)))
  
-(defmacro with-group-collpased [title & body]
+(defmacro with-group-collapsed [title & body]
   `(do
      (.groupCollapsed js/console ~title)
      ~@body
