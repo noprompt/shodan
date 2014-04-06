@@ -35,12 +35,12 @@
 ;; Message grouping (browser only)
 
 (when-not node-js?
-  (defn group
+  (defn group-start
     "Begin a console message group."
     [& args]
     (js-apply (.-group js/console) js/console args))
 
-  (defn group-collapsed
+  (defn group-start-collapsed
     "Begin a console message group in a collapsed state."
     [& args]
     (js-apply (.-groupCollapsed js/console) js/console args))
@@ -48,7 +48,7 @@
   (defn group-end
     "End a console message group."
     []
-    (.-groupEnd js/console)))
+    (.groupEnd js/console)))
 
 ;;----------------------------------------------------------------------
 ;; Assertion
@@ -73,7 +73,7 @@
 ;; Profiling (browser only)
 
 (when-not node-js?
-  (defn profile
+  (defn profile-start
     "Begin a profile named title."
     [title]
     (.profile js/console title))
