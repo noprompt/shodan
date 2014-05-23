@@ -1,4 +1,4 @@
-(defproject shodan "0.2.1-SNAPSHOT"
+(defproject shodan "0.3.0"
   :description "ClojureScript wrapper for the JavaScript console API."
   :url "https://github.com/noprompt/shodan"
   :license {:name "Eclipse Public License"

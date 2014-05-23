@@ -14,7 +14,7 @@ A ClojureScript library providing wrappers for the JavaScript
 Add Shodan as a `:dependency` in your `project.clj` file.
 
 ```clojure
-[shodan "0.2.0"]
+[shodan "0.3.0"]
 ```
 
 ## Usage
