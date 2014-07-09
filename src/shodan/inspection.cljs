@@ -1,4 +1,4 @@
-(ns shodan.inspect
+(ns shodan.inspection
   (:require
     [shodan.console :as console :include-macros true]))
 
