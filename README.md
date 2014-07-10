@@ -118,6 +118,22 @@ profiling, and timing.
 ;; => Time Elapsed: 0.001ms
 ```
 
+### Inspection
+
+Inspect ClojureScript data structures and display their structure to the browser
+console:
+
+```clojure
+(ns omfg
+  (:require [shodan.inspection :refer [inspect]))
+```
+
+Use it just like you would clojure's `clojure.pprint/pprint`:
+
+```clojure
+(inspect my-super-complex-data)
+```
+
 ## Why?
 
 Because I'm tired of copy/pasting/rewriting the same code all the time
