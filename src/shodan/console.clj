@@ -32,10 +32,19 @@
        result#)))
  
 (defmacro time
-  "Evaluate body and time it's execution. Returns the value of body."
+  "Evaluate body and time its execution. Returns the value of body."
   [& body]
   `(do
      (.time js/console "Elapsed time")
      (let [result# (do ~@body)]
        (.timeEnd js/console "Elapsed time") 
+       result#)))
+
+(defmacro with-time
+  "Evaluate body and time its execution with title. Returns the value of body."
+  [title & body]
+  `(do
+     (.time js/console ~title)
+     (let [result# (do ~@body)]
+       (.timeEnd js/console ~title)
        result#)))
