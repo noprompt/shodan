@@ -8,5 +8,27 @@
   [[org.clojure/clojure "1.5.1"]
    [org.clojure/clojurescript "0.0-2202" :scope "provided"]]
 
-  :plugins
-  [[com.cemerick/austin "0.1.4"]])
+  :profiles
+  {:dev
+   {:dependencies
+    [[com.cemerick/piggieback "0.1.3"]
+     [figwheel "0.1.3-SNAPSHOT"]
+     [weasel "0.2.0"]]
+
+    :plugins
+    [[lein-figwheel "0.1.3-SNAPSHOT"]
+     [lein-cljsbuild "1.0.3"]]
+
+    :source-paths
+    ["dev"]
+
+    :repl-options
+    {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+
+  :cljsbuild
+  {:builds [{:id "shodan"
+             :source-paths ["src" "dev"]
+             :compiler {:output-to "resources/public/shodan.js"
+                        :output-dir "resources/public/out"
+                        :optimizations :none
+                        :source-map true}}]})
