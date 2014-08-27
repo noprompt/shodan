@@ -1,9 +1,7 @@
 (ns shodan.trace
   (:refer-clojure :exclude [defn fn let])
   (:require
-   [clojure.core :as core]
-   [cljs.env :as env]
-   [cljs.analyzer :refer [*cljs-ns*]]))
+   [clojure.core :as core]))
 
 (core/defn condition-map? [x]
   (and (map? x)
@@ -38,8 +36,7 @@
          return#))))
 
 (defmacro fn
-  "Like clojure.core/fn but adds tracing at compile time when log-level
-  is set to :trace."
+  "Like clojure.core/fn but adds tracing at compile time."
   [& body]
   (core/let [[_ & sym+specs] (macroexpand-1 `(core/fn ~@body))
              [sym fn-specs] (if (symbol? (first sym+specs))
@@ -53,8 +50,25 @@
     `(core/fn ~sym ~@new-specs)))
 
 (defmacro defn
-  "Like clojure.core/defn but adds tracing at compile time when 
-  log-level is set to :trace."
+  "Like clojure.core/defn but adds tracing at compile time if the value
+  of (:tracer (meta sym)) or (:tracer (meta *ns*)) is set. The value of
+  :tracer must be a symbol, quoted symbol, or a reified instance which
+  satisfies shodan.trace/ITraceEnter, shodan.trace/ITraceError, and
+  shodan.trace/ITraceExit. 
+
+  Ex.
+  
+    (defn ^{:tracer shodan.trace/default-tracer}
+      add [x y] (+ x y))
+    
+    (add 1 2) 
+    ;; The console will display a grouped message containing the 
+    ;; following information:
+    ;; foo/bar [x y]
+    ;;   x = 1
+    ;;   y = 3
+    ;;   3 
+  "
   [sym & body]
   (core/let [[_ sym [_ & fn-specs]] (macroexpand-1 `(core/defn ~sym ~@body))
              tracer (or (:tracer (meta sym))
