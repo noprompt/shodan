@@ -1,6 +1,4 @@
-(ns shodan.console
-  (:refer-clojure :exclude [assert])
-  (:require [shodan.util :refer [js-apply]]))
+(ns shodan.console)
 
 ;; ---------------------------------------------------------------------
 ;; Polyfill

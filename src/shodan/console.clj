@@ -10,12 +10,14 @@
 ;; the log will be linked back to Shodan and not to the original
 ;; source of the call.
 
-
 (defn node-js?
   "Returns true if the ClojureScript compiler :target option is 
   :node-js."
   []
   (= :nodejs (:target @env/*compiler*)))
+
+(defmacro js-apply [f target args]
+  `(.apply ~f ~target (to-array ~args)))
 
 ;; ---------------------------------------------------------------------
 ;; Logging
@@ -25,25 +27,50 @@
   [& args]
   `(.log js/console ~@args))
 
+(defmacro log*
+  "Like `log` but takes a collection and uses apply."
+  [coll]
+  `(js-apply (.-log js/console) js/console ~coll))
+
 (defmacro debug
   "Like `log` but marks the output as debugging information."
   [& args]
   `(.debug js/console ~@args))
+
+(defmacro debug*
+  "Like `debug` but takes a collection and uses apply."
+  [coll]
+  `(js-apply (.-debug js/console) js/console ~coll))
 
 (defmacro info
   "Like `log` but marks the output as an informative message."
   [& args]
   `(.info js/console ~@args))
 
+(defmacro info*
+  "Like `info` but takes a collection and uses apply."
+  [coll]
+  `(js-apply (.-info js/console) js/console ~coll))
+
 (defmacro warn
   "Like `log` but marks the output as a warning."
   [& args]
   `(.warn js/console ~@args))
 
+(defmacro warn*
+  "Like `warn` but takes a collection and uses apply."
+  [coll]
+  `(js-apply (.-warn js/console) js/console ~coll))
+
 (defmacro error
   "Like `log` but marks the output as an error."
   [& args]
   `(.-error js/console ~@args))
+
+(defmacro error*
+  "Like `error` but takes a collection and uses apply."
+  [coll]
+  `(js-apply (.-error js/console) js/console ~coll))
 
 
 ;; ---------------------------------------------------------------------

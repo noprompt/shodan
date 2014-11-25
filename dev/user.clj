@@ -8,4 +8,4 @@
     :repl-env
     (weasel.repl.websocket/repl-env
       :ip "0.0.0.0"
-      :port 9001)))
+      :port 9010)))
