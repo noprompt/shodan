@@ -17,7 +17,7 @@
   [title & body]
   `(do
      (.groupCollapsed js/console ~title)
-     (let [result# ~@body]
+     (let [result# (do ~@body)]
        (.groupEnd js/console)
        result#)))
  
