@@ -115,7 +115,7 @@
   (when-not (node-js?)
     `(do
        (.groupCollapsed js/console ~title)
-       (let [result# ~@body]
+       (let [result# (do ~@body)]
          (.groupEnd js/console)
          result#))))
 
@@ -202,4 +202,4 @@
   [x]
   `(do
      (.log js/console ~x)
-     x))
+     ~x))
