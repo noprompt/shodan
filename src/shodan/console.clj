@@ -11,7 +11,7 @@
 ;; source of the call.
 
 (defn node-js?
-  "Returns true if the ClojureScript compiler :target option is 
+  "Returns true if the ClojureScript compiler :target option is
   :node-js."
   []
   (= :nodejs (:target @env/*compiler*)))
@@ -107,7 +107,7 @@
        (let [result# (do ~@body)]
          (.groupEnd js/console)
          result#))))
- 
+
 (defmacro with-group-collapsed
   "Evaluate body within a new console group (collapsed) with
   title. Returns the value of body."
@@ -174,14 +174,14 @@
 
 (defmacro time-end [id]
   `(.timeEnd js/console ~id))
- 
+
 (defmacro time
   "Evaluate body and time its execution. Returns the value of body."
   [& body]
   `(do
      (.time js/console "Elapsed time")
      (let [result# (do ~@body)]
-       (.timeEnd js/console "Elapsed time") 
+       (.timeEnd js/console "Elapsed time")
        result#)))
 
 (defmacro with-time
