@@ -94,9 +94,6 @@
   (when-not (node-js?)
     `(.groupEnd js/console)))
 
-
-;;; Convenience
-
 (defmacro with-group
   "Evaluate body within a new console group with title. Returns the
   value of body."
