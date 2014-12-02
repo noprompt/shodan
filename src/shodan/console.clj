@@ -65,7 +65,7 @@
 (defmacro error
   "Like `log` but marks the output as an error."
   [& args]
-  `(.-error js/console ~@args))
+  `(.error js/console ~@args))
 
 (defmacro error*
   "Like `error` but takes a collection and uses apply."
