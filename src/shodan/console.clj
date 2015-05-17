@@ -185,10 +185,10 @@
   "Evaluate body and time its execution with title. Returns the value
   of body."
   [title & body]
-  `(do
-     (.time js/console ~title)
+  `(let [title# ~title]
+     (.time js/console title#)
      (let [result# (do ~@body)]
-       (.timeEnd js/console ~title)
+       (.timeEnd js/console title#)
        result#)))
 
 ;; ---------------------------------------------------------------------
@@ -197,6 +197,6 @@
 (defmacro spy
   "Log and return a value."
   [x]
-  `(do
-     (.log js/console ~x)
-     ~x))
+  `(let [ret# ~x]
+     (.log js/console ret#)
+     ret#))
