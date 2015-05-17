@@ -1,4 +1,5 @@
-(ns shodan.console)
+(ns shodan.console
+  (:require-macros [shodan.console]))
 
 ;; ---------------------------------------------------------------------
 ;; Polyfill
