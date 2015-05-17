@@ -26,8 +26,8 @@
   :cljsbuild
   {:builds [{:id "dev"
              :source-paths ["src" "dev"]
-             :compiler {:output-to "resources/public/shodan.js"
-                        :output-dir "resources/public/out"
+             :compiler {:output-to "dev-resources/public/shodan.js"
+                        :output-dir "dev-resources/public/out"
                         :optimizations :none
                         :source-map true}}]}
   :figwheel
