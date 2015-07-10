@@ -125,7 +125,7 @@ console:
 
 ```clojure
 (ns omfg
-  (:require [shodan.inspection :refer [inspect]))
+  (:require [shodan.inspection :refer [inspect]]))
 ```
 
 Use it just like you would clojure's `clojure.pprint/pprint`:
