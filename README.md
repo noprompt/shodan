@@ -74,7 +74,7 @@ Wrappers for `console.profile(title)` and `console.profileEnd()`.
     ys))
 
 ;; js/console.profileEnd
-(console/profile-end)
+(console/profile-end "Accessing the primary data loop")
 ```
 
 ### Timing
@@ -84,7 +84,7 @@ Wrappers for `console.time()` and `console.timeEnd()`.
 ```clj
 (console/time-start "Addition")
 (+ 1 1)
-(console/time-end)
+(console/time-end "Addition")
 ```
 
 ## Macros
